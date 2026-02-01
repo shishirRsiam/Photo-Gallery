@@ -8,14 +8,11 @@ from .serializers import PhotoSerializer
 
 class PhotoListCreateAPIView(APIView):
     def get(self, request):
-        print("GET request received for PhotoListCreateAPIView")
         photos = Photo.objects.order_by("-created_at")
         ser = PhotoSerializer(photos, many=True, context={"request": request})
         return Response(ser.data)
 
     def post(self, request):
-        print("POST request received for PhotoListCreateAPIView")
-        print(f"Request FILES: {request.FILES}")
         # support multiple files with key "images"
         files = request.FILES.getlist("images")
         if not files:
@@ -39,13 +36,6 @@ class PhotoListCreateAPIView(APIView):
                 print(f"Error uploading file {f.name}: {e}")
 
         ser = PhotoSerializer(created, many=True, context={"request": request})
-        print(f"Created {len(created)} photos.")
-        print(f"Response data: {ser.data}")
-        print("POST request processing completed.")
-        print("-----")
-        print()
-        print()
-        print()
         return Response(ser.data, status=status.HTTP_201_CREATED)
 
 
