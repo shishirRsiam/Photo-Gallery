@@ -11,3 +11,4 @@ class Photo(models.Model):
 
     def __str__(self):
         return self.name or f"Photo {self.id}"
+
