@@ -13,3 +13,7 @@
 01-02-2026 11:03:52   53  push "[ADD] add django project"
 01-02-2026 11:08:34   52  ls -a
 01-02-2026 11:08:57   53  push "[FIX] fix api error"
+01-02-2026 11:25:06   54  push "[DONE] upload photo on django server"
+01-02-2026 11:29:28   52  ls -a
+01-02-2026 11:29:29   52  ls -a
+01-02-2026 11:29:29   52  ls -a
