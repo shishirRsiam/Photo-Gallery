@@ -19,8 +19,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost,backend"
-      CORS_ALLOWED_ORIGINS: "http://localhost:3000"
+      DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost,backend,144.126.143.121"
+      CORS_ALLOWED_ORIGINS: "http://localhost:3000,http://144.126.143.121:3000"
 
       # Postgres settings for Django
       DB_NAME: "photogallery"
@@ -43,7 +43,7 @@ services:
       - "3000:3000"
     environment:
       # Browser needs localhost
-      NEXT_PUBLIC_API_BASE: "http://localhost:8000"
+      NEXT_PUBLIC_API_BASE: "http://144.126.143.121:8000"
     volumes:
       - ./frontend:/app
       - /app/node_modules

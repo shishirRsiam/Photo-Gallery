@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'rest_framework', 'corsheaders',
     'Photos', 
 ]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
