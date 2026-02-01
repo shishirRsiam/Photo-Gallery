@@ -5,9 +5,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# system deps (Pillow often needs these)
+# System deps + netcat (for waiting for postgres)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential libjpeg62-turbo-dev zlib1g-dev \
+    build-essential libjpeg62-turbo-dev zlib1g-dev netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /app/
@@ -15,7 +15,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . /app/
 
+# entrypoint for waiting + migrate + run
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 8000
 
-# dev command (auto migrate)
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+ENTRYPOINT ["/entrypoint.sh"]

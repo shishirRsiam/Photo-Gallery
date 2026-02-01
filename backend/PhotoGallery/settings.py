@@ -145,3 +145,16 @@ REST_FRAMEWORK = {
 
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 ALLOWED_HOSTS = ['*'] # for development only
+
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME", "photogallery"),
+        "USER": os.environ.get("DB_USER", "photogallery_user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "photogallery_pass"),
+        "HOST": os.environ.get("DB_HOST", "db"),
+        "PORT": os.environ.get("DB_PORT", "5432"),
+    }
+}
