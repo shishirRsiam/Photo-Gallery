@@ -23,7 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$(#5a^rx#pac^k)562c2we1+6-yguif-@p=sp7e16378x!mv@%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
+
 
 ALLOWED_HOSTS = []
 
@@ -41,11 +43,6 @@ INSTALLED_APPS = [
     'Photos', 
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-# ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
@@ -161,3 +158,10 @@ DATABASES = {
         "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
+
+
+# CORS_ALLOWED_ORIGINS = [
+#     "http://144.126.143.121:3000", "http://localhost:3000",
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+

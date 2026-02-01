@@ -43,7 +43,7 @@ services:
       - "3000:3000"
     environment:
       # Browser needs localhost
-      NEXT_PUBLIC_API_BASE: "http://144.126.143.121:8000"
+      NEXT_PUBLIC_API_BASE: "http://127.0.0.1:8000"
     volumes:
       - ./frontend:/app
       - /app/node_modules

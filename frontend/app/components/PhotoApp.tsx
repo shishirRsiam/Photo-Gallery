@@ -104,6 +104,10 @@ export default function PhotoApp() {
     } finally {
       setBusy(false);
     }
+
+    // Optimistic delete
+    // setPhotos((prev) => prev.filter((p) => p.id !== id));
+    // if (activeId === id) setActiveId(null);
   }
 
   function onPickClick() {
@@ -222,7 +226,7 @@ export default function PhotoApp() {
                     <div className="text-[11px] text-gray-600">ID: {p.id}</div>
                   </div>
 
-                  <button
+                  {/* <button
                     className="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100"
                     onClick={(e) => {
                       e.preventDefault();
@@ -233,7 +237,7 @@ export default function PhotoApp() {
                     type="button"
                   >
                     <Trash2 className="h-4 w-4" />
-                  </button>
+                  </button> */}
                 </div>
               </button>
             ))}
@@ -266,12 +270,12 @@ export default function PhotoApp() {
                   <Download className="h-4 w-4" /> Download
                 </button>
 
-                <button
+                {/* <button
                   onClick={() => deletePhoto(activePhoto.id)}
                   className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:opacity-90"
                 >
                   <Trash2 className="h-4 w-4" /> Delete
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
