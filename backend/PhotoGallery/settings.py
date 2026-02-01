@@ -140,3 +140,8 @@ REST_FRAMEWORK = {
         "rest_framework.renderers.JSONRenderer",
     )
 }
+
+
+
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['*'] # for development only
