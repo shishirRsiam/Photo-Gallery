@@ -9,6 +9,7 @@ type PhotoItem = {
   created_at: string;
   image_url: string;
   thumb_url: string;
+  image_size: string;
 };
 
 const MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
@@ -224,7 +225,7 @@ export default function PhotoApp() {
                 <div className="flex items-center justify-between gap-2 p-2">
                   <div className="min-w-0">
                     <div className="truncate text-xs font-medium">{p.name}</div>
-                    {/* <div className="text-[11px] text-gray-600">ID: {p.id}</div> */}
+                    <div className="text-[11px] text-gray-600">Size: {p.image_size}</div>
                   </div>
 
                   {/* <button
@@ -251,7 +252,7 @@ export default function PhotoApp() {
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="truncate text-sm font-medium">{activePhoto.name}</div>
-                  {/* <div className="text-xs text-gray-600">ID: {activePhoto.id}</div> */}
+                  <div className="text-xs text-gray-600">Size: {activePhoto.image_size}</div>
                 </div>
 
                 <button className="inline-flex h-8 w-8 items-center justify-center cursor-pointer rounded-lg hover:bg-gray-100" onClick={() => setActiveId(null)} aria-label="Close">
