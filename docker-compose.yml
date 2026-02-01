@@ -16,7 +16,7 @@ services:
     container_name: photogallery-backend
     working_dir: /app
     environment:
-      DEBUG: "0"
+      DEBUG: "1"
       DJANGO_ALLOWED_HOSTS: "127.0.0.1,localhost,144.126.143.121,nginx"
       CORS_ALLOWED_ORIGINS: "http://144.126.143.121,http://144.126.143.121:3000,http://localhost:3000"
 
