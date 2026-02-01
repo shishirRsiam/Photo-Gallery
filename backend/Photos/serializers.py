@@ -10,7 +10,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, obj):
         request = self.context.get("request")
-        if request and obj.image:
-            return request.build_absolute_uri(obj.image.url)
-        return obj.image.url if obj.image else ""
+        if request and obj.thumb:
+            return request.build_absolute_uri(obj.thumb.url)
+        return obj.thumb.url if obj.thumb else ""
 
