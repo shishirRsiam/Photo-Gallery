@@ -8,6 +8,7 @@ from .serializers import PhotoSerializer
 
 class PhotoListCreateAPIView(APIView):
     def get(self, request):
+        print("GET request received for PhotoListCreateAPIView")
         photos = Photo.objects.order_by("-created_at")
         ser = PhotoSerializer(photos, many=True, context={"request": request})
         return Response(ser.data)
@@ -26,11 +27,14 @@ class PhotoListCreateAPIView(APIView):
 
         created = []
         for f in files:
-            photo = Photo.objects.create(
-                image=f,
-                name=f.name
-            )
-            created.append(photo)
+            try:
+                photo = Photo.objects.create(
+                    image=f,
+                    name=f.name
+                )
+                created.append(photo)
+            except Exception as e:
+                print(f"Error uploading file {f.name}: {e}")
 
         ser = PhotoSerializer(created, many=True, context={"request": request})
         return Response(ser.data, status=status.HTTP_201_CREATED)
@@ -42,3 +46,4 @@ class PhotoDeleteAPIView(APIView):
         photo.image.delete(save=False)  # delete file
         photo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

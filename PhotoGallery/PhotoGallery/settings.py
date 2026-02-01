@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework', 'corsheaders',
     'Photos', 
 ]
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", '*', 
+    "http://localhost:3000",
 ]
 
 MIDDLEWARE = [
