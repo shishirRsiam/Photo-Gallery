@@ -6,7 +6,7 @@ class PhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Photo
-        fields = ["id", 'user', "name", "created_at", "image", "image_url"]
+        fields = ["id", 'user', "name", "created_at", "image", "thumb", "image_url"]
 
     def get_image_url(self, obj):
         request = self.context.get("request")
