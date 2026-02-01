@@ -10,3 +10,9 @@ media/
 .DS_Store
 .vscode/
 .idea/
+
+
+creds.data
+
+
+my_command_history.txt
