@@ -8,7 +8,7 @@ from .serializers import PhotoSerializer
 
 class PhotoListCreateAPIView(APIView):
     def get(self, request):
-        photos = Photo.objects.order_by("-created_at")
+        photos = Photo.objects.order_by("-created_at")[:100]
         ser = PhotoSerializer(photos, many=True, context={"request": request})
         return Response(ser.data)
 

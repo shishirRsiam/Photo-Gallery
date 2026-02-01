@@ -11,7 +11,7 @@ type PhotoItem = {
   thumb_url: string;
 };
 
-const MAX_IMAGE_BYTES = 4 * 1024 * 1024 * 1024; // 4GB
+const MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
 
 function formatBytes(bytes: number) {
   if (!Number.isFinite(bytes)) return "";
@@ -65,9 +65,9 @@ export default function PhotoApp() {
       return;
     }
 
-    const tooBig = files.find((f) => f.size > MAX_IMAGE_BYTES);
+    const tooBig = files.find((f) => f.size > MAX_FILE_BYTES);
     if (tooBig) {
-      setError(`File too large: ${tooBig.name} (${formatBytes(tooBig.size)}). Max ${formatBytes(MAX_IMAGE_BYTES)}.`);
+      setError(`File too large: ${tooBig.name} (${formatBytes(tooBig.size)}). Max ${formatBytes(MAX_FILE_BYTES)}.`);
       return;
     }
 
@@ -144,7 +144,7 @@ export default function PhotoApp() {
             <button
               onClick={onPickClick}
               disabled={busy}
-              className="inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
+              className="cursor-pointer inline-flex items-center gap-2 rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
             >
               <Upload className="h-4 w-4" /> {busy ? "Uploading..." : "Upload"}
             </button>
@@ -152,7 +152,7 @@ export default function PhotoApp() {
             <button
               onClick={loadPhotos}
               disabled={busy}
-              className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium disabled:opacity-50"
+              className="cursor-pointer inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium disabled:opacity-50"
             >
               Refresh
             </button>
@@ -207,12 +207,12 @@ export default function PhotoApp() {
             {photos.map((p) => (
               <button
                 key={p.id}
-                className="group relative overflow-hidden rounded-2xl border bg-white text-left shadow-sm transition hover:shadow"
+                className="cursor-pointer group relative overflow-hidden rounded-2xl border bg-white text-left shadow-sm transition hover:shadow"
                 onClick={() => setActiveId(p.id)}
                 type="button"
                 title={p.name}
               >
-                <div className="aspect-square w-full overflow-hidden">
+                <div className="aspect-square cursor-pointer w-full overflow-hidden">
                   <img
                     src={p.thumb_url}
                     alt={p.name}
@@ -246,34 +246,34 @@ export default function PhotoApp() {
         )}
 
         {activePhoto ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={() => setActiveId(null)}>
-            <div className="w-full max-w-3xl rounded-2xl bg-white p-4" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-3" onClick={() => setActiveId(null)}>
+            <div className="w-full max-w-lg rounded-2xl bg-white p-3" onClick={(e) => e.stopPropagation()}>
               <div className="mb-3 flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="truncate text-sm font-medium">{activePhoto.name}</div>
                   {/* <div className="text-xs text-gray-600">ID: {activePhoto.id}</div> */}
                 </div>
 
-                <button className="inline-flex h-9 w-9 items-center justify-center rounded-lg hover:bg-gray-100" onClick={() => setActiveId(null)} aria-label="Close">
+                <button className="inline-flex h-8 w-8 items-center justify-center cursor-pointer rounded-lg hover:bg-gray-100" onClick={() => setActiveId(null)} aria-label="Close">
                   <X className="h-4 w-4" />
                 </button>
               </div>
 
               <div className="overflow-hidden rounded-2xl border">
-                <img src={activePhoto.image_url} alt={activePhoto.name} className="w-full object-contain" />
+                <img src={activePhoto.image_url} alt={activePhoto.name} className="w-full object-contain max-h-[50vh]" />
               </div>
 
               <div className="mt-3 flex items-center justify-between">
                 <button
                   onClick={downloadActive}
-                  className="inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+                  className="cursor-pointer inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium hover:bg-gray-50"
                 >
                   <Download className="h-4 w-4" /> Download
                 </button>
 
                 {/* <button
                   onClick={() => deletePhoto(activePhoto.id)}
-                  className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+                  className="cursor-pointer inline-flex items-center gap-2 rounded-lg bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:opacity-90"
                 >
                   <Trash2 className="h-4 w-4" /> Delete
                 </button> */}
