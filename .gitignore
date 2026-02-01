@@ -16,3 +16,6 @@ creds.data
 
 
 my_command_history.txt
+
+staticfiles/
+
